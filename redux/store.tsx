@@ -7,7 +7,7 @@ const persistConfig = {
   key: "root",
   storage: storage,
   // whitelist: [],
-  whitelist: ["user", "createEventSpace"],
+  whitelist: ["user"],
 };
 
 const persistedReducer = persistReducer(

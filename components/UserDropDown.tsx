@@ -1,6 +1,5 @@
-import React from 'react'
-import Link from 'next/link'
-import { ThemeSwitcher } from "./theme/ThemeSwitcher";
+import React from "react";
+import Link from "next/link";
 import { LogOut, Settings, User } from "lucide-react";
 import {
   DropdownMenu,
@@ -10,9 +9,26 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { signOut } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { setUserDetail } from "@/redux/slides/userSlice";
+import { auth } from "@/utils/firebase";
 
+const UserDropDown = ({
+  username,
+  isCollapsed,
+}: {
+  username: string;
+  isCollapsed: boolean;
+}) => {
+  const dispatch = useDispatch();
 
-const UserDropDown = ({username, isCollapsed}: {username: string, isCollapsed: boolean}) => {
+  const signUserLog = async () => {
+    signOut(auth).then(() => {
+      dispatch(setUserDetail(null));
+    });
+  };
+
   return (
     <div className="flex items-center gap-2">
       <DropdownMenu>
@@ -26,7 +42,9 @@ const UserDropDown = ({username, isCollapsed}: {username: string, isCollapsed: b
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-48">
           <DropdownMenuLabel className="text-center py-2">
-            Michael Adams
+            <span className="text-sm font-medium line-clamp-1 overflow-hidden">
+              {username}
+            </span>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <Link href="/profile/adams-michael">
@@ -38,13 +56,16 @@ const UserDropDown = ({username, isCollapsed}: {username: string, isCollapsed: b
             <Settings className="w-4 h-4" /> Settings
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="flex items-center gap-2 text-red-500">
+          <DropdownMenuItem
+            className="flex items-center gap-2 text-red-500 cursor-pointer"
+            onClick={signUserLog}
+          >
             <LogOut className="w-4 h-4" /> Logout
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
   );
-}
+};
 
-export default UserDropDown
+export default UserDropDown;

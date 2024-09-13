@@ -5,10 +5,15 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Google, GitHub, Apple, Microsoft } from "@mui/icons-material";
 import { boilerAuth } from "@/boiler-plate-controllers/auth-controls";
+import GoogleButton from "@/components/auths/GoogleButton";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Log in | Boiler plate",
+  description: "Log in to Boiler plate",
+};
 
 const page = () => {
-  const gitAuth = process.env.NEXT_PUBLIC_AUTH_GIT;
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
       <div className="md:mx-auto mx-5 w-full max-w-md space-y-8">
@@ -49,19 +54,14 @@ const page = () => {
                 GitHub
               </Button>
             )}
-            {boilerAuth.google && (
-              <Button variant="outline" className="w-full border-teal-600">
-                <Google className="mr-2 h-4 w-4" />
-                Google
-              </Button>
-            )}
+            <GoogleButton />
             {boilerAuth.microsoft && (
               <Button variant="outline" className="w-full border-teal-600">
                 <Microsoft className="mr-2 h-4 w-4" />
                 Microsoft
               </Button>
             )}
-            {boilerAuth.microsoft && (
+            {boilerAuth.apple && (
               <Button variant="outline" className="w-full border-teal-600">
                 <Apple className="mr-2 h-4 w-4" />
                 Apple

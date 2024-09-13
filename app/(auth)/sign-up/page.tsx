@@ -5,6 +5,13 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Google, GitHub, Apple, Microsoft } from "@mui/icons-material";
 import { boilerAuth } from "@/boiler-plate-controllers/auth-controls";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "Log in | Boiler plate",
+  description: "Log in to Boiler plate",
+};
 
 const page = () => {
   return (

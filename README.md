@@ -3,30 +3,30 @@
 
 ## (about the path system)
 
-the (auth) is holding the signup and login folders with a layout checking if there is a user.
-the (authenticate-path) is holding the folders which verified users can go to
-the (path) is holding the folders which any user can go to.
-the (admin) is holding the admin rights only
+- the (auth) is holding the signup and login folders with a layout checking if there is a user.
+- the (authenticate-path) is holding the folders which verified users can go to
+- the (path) is holding the folders which any user can go to.
+- the (admin) is holding the admin rights only
 
 ## (about the packages)
 
-icons = lucide-react, mui
-shadcn = manage ui components
-state manager = redux
-database = firebase
-auth = firebase
+- icons = lucide-react, mui
+- shadcn = manage ui components
+- state manager = redux
+- database = firebase
+- auth = firebase
 
 ## (about auth controllers)
-in the boiler-plate-controllers/auth-controls.tsx
-Control which authentication you want to add to your app. Just set it to `true` then you are good to go
+- in the boiler-plate-controllers/auth-controls.tsx
+- Control which authentication you want to add to your app. Just set it to `true` then you are good to go
 
 
 ## (about the stripe)
 
-you can add your stripe product id in the .env.local file. 
-change the "loggedUser.id" in the checkout_subscribe_session and checkout_one_time_session routes with current user id.
-Set up subscription payment. (checkout_subscribe_session is holding the subscription payment)
-Set up one time payment (checkout_one_time_session is holding the one time payment)
+- you can add your stripe product id in the .env.local file.
+- change the "loggedUser.id" in the checkout_subscribe_session and checkout_one_time_session routes with current user id.
+- Set up subscription payment. (checkout_subscribe_session is holding the subscription payment)
+- Set up one time payment (checkout_one_time_session is holding the one time payment)
 
-After successful payment, user is redirected to the success page
-If payment is failed, user is redirected to the failed page
+- After successful payment, user is redirected to the success page
+- If payment is failed, user is redirected to the failed page

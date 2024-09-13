@@ -16,10 +16,14 @@ import {
 } from "lucide-react";
 import { YouTube } from "@mui/icons-material";
 import UserDropDown from "./UserDropDown";
+import { useSelector } from "react-redux";
+import { reduxUserType } from "@/types/userType";
 
 const SideNavBar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  const userDetail = useSelector((state: reduxUserType) => state.user.user);
 
   useEffect(() => {
     const handleResize = () => {
@@ -53,9 +57,9 @@ const SideNavBar = () => {
             isMobile
               ? `fixed top-0 left-0 h-full z-40 bg-background
                ${isCollapsed ? "-translate-x-full" : "translate-x-0"}`
-              : `relative ${isCollapsed ? "w-16" : ""}`
+              : `relative ${isCollapsed ? "w-16" : "w-[270px]"}`
           }
-          px-2 border-r border-[#2c2c2c] py-6
+          px-2 border-r py-6
           transition-all duration-300
         `}
       >
@@ -102,7 +106,10 @@ const SideNavBar = () => {
           </nav>
         </div>
 
-        <UserDropDown username="Michael Adams Nana Boateng" isCollapsed={isCollapsed} />
+        <UserDropDown
+          username={userDetail?.displayName}
+          isCollapsed={isCollapsed}
+        />
       </aside>
     </>
   );
