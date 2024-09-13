@@ -1,51 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 <!-- /-------------------------------------------------- -->
 
 ## (about the path system)
+
 the (auth) is holding the signup and login folders with a layout checking if there is a user.
 the (authenticate-path) is holding the folders which verified users can go to
 the (path) is holding the folders which any user can go to.
 the (admin) is holding the admin rights only
 
-
 ## (about the packages)
-icons = lubic, mui
+
+icons = lucide-react, mui
+shadcn = manage ui components
 state manager = redux
 database = firebase
 auth = firebase
+
+## (about auth controllers)
+in the boiler-plate-controllers/auth-controls.tsx
+Control which authentication you want to add to your app. Just set it to `true` then you are good to go
+
+
+## (about the stripe)
+
+you can add your stripe product id in the .env.local file. 
+change the "loggedUser.id" in the checkout_subscribe_session and checkout_one_time_session routes with current user id.
+Set up subscription payment. (checkout_subscribe_session is holding the subscription payment)
+Set up one time payment (checkout_one_time_session is holding the one time payment)
+
+After successful payment, user is redirected to the success page
+If payment is failed, user is redirected to the failed page

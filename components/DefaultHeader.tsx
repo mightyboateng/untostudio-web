@@ -1,11 +1,20 @@
 "use client";
 
-import { Close, Menu } from "@mui/icons-material";
+import { Close, Menu, Person } from "@mui/icons-material";
 import Link from "next/link";
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { ThemeSwitcher } from "./theme/ThemeSwitcher";
-import { User } from "lucide-react";
+import { LogOut, Settings, User } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import UserDropDown from "./UserDropDown";
 
 const DefaultHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,12 +53,9 @@ const DefaultHeader = () => {
             >
               Pricing
             </Link>
-           
           </div>
           <ThemeSwitcher />
-          <Button>
-            <User />
-          </Button>
+          {/* <UserDropDown /> */}
         </div>
       </div>
     </nav>
