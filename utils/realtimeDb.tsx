@@ -1,8 +1,6 @@
-import { onValue, push, set } from "firebase/database";
+import { onValue, push, set, update } from "firebase/database";
 import { queryUserDB, realtimeDb, rtRef } from "./firebase";
 import { User } from "firebase/auth";
-import { currentUserType } from "@/types/userType";
-import { Dispatch } from "@reduxjs/toolkit";
 import { store } from "@/redux/store";
 import { setUserDetail } from "@/redux/slides/userSlice";
 import {
@@ -10,11 +8,9 @@ import {
   kErrorMessage,
   kUserCreatedAlready,
 } from "@/utils/constants";
+import { currentUserType } from "@/types/userType";
 
-export const addNewUserToRealTimeDb = async (
-  userDetail: User,
-  dispatch: Dispatch
-) => {
+export const addNewUserToRealTimeDb = async (userDetail: User) => {
   const checkUserExistence: any = await checkIfUserIsCreatedAlready(
     userDetail.uid
   );
@@ -67,7 +63,28 @@ export const addNewUserToRealTimeDb = async (
   }
 };
 
-const checkIfUserIsCreatedAlready = async (userUid: string) => {
+export const updateUserDetails = async ({
+  userDetail,
+  databaseId,
+  displayName,
+}: {
+  userDetail:currentUserType
+  databaseId: string;
+  displayName: string;
+}) => {
+  try {
+    update(rtRef(realtimeDb, `/users/${databaseId}`), {
+      displayName: displayName,
+    });
+    store.dispatch(setUserDetail({...userDetail, displayName: displayName}));
+    return kSuccessfulMessage;
+  } catch (error) {
+    console.log("error", error);
+    return kErrorMessage;
+  }
+};
+
+export const checkIfUserIsCreatedAlready = async (userUid: string) => {
   console.log("checking user", userUid);
   return new Promise((resolve) => {
     onValue(

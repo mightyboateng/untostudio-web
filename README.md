@@ -30,3 +30,10 @@
 
 - After successful payment, user is redirected to the success page
 - If payment is failed, user is redirected to the failed page
+
+
+## (about the colors)
+
+- Give the variable name of your colors in the tailwind.config.ts file.
+- Select the color from the "default" section in the tailwind.config.ts file.
+- Set the colors in the globals.css file. and start using it.

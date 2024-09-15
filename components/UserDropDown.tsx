@@ -30,12 +30,12 @@ const UserDropDown = ({
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 w-full">
       <DropdownMenu>
-        <DropdownMenuTrigger className="flex items-center focus:outline-none border rounded p-2">
+        <DropdownMenuTrigger className="flex items-center focus:outline-none border rounded p-2 w-full">
           <User />
           {!isCollapsed && (
-            <span className="text-sm font-medium line-clamp-1 overflow-hidden">
+            <span className="ml-2 text-sm font-medium line-clamp-1 overflow-hidden">
               {username}
             </span>
           )}

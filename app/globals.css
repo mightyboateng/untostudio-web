@@ -5,6 +5,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* // ------------------------------------ */
+  /* // --- Define the color you want to set */
+  /* // ---------------------------------- */
+  --default: 172 66% 50%;
+  --default-foreground: 0 0% 100%;
+  --default-hover: 172 66% 37%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -79,6 +86,13 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    /* // ------------------------------------ */
+    /* // --- Define the color you want to set in dark mode */
+    /* // ---------------------------------- */
+    --default: 172 66% 50%;
+    --default-foreground: 0 0% 100%;
+    --default-hover: 172 66% 37%;
   }
 }
 

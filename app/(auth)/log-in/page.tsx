@@ -7,6 +7,8 @@ import { Google, GitHub, Apple, Microsoft } from "@mui/icons-material";
 import { boilerAuth } from "@/boiler-plate-controllers/auth-controls";
 import GoogleButton from "@/components/auths/GoogleButton";
 import { Metadata } from "next";
+import Image from "next/image";
+import EmailPassword from "@/components/auths/EmailPassword";
 
 export const metadata: Metadata = {
   title: "Log in | Boiler plate",
@@ -18,28 +20,14 @@ const page = () => {
     <div className="flex min-h-screen items-center justify-center bg-background">
       <div className="md:mx-auto mx-5 w-full max-w-md space-y-8">
         <div className="flex flex-col items-center space-y-2">
+          <Link href="/">
+            <Image src="/logo.png" alt="logo" width={70} height={70} />
+          </Link>
           <h2 className="text-2xl font-bold">Welcome back</h2>
           <p className="text-sm text-muted-foreground">Login here</p>
         </div>
         <div className="grid gap-6">
-          {boilerAuth.email_password && (
-            <form className="grid gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="name@example.com" />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" placeholder="**********" />
-              </div>
-              <Button
-                type="submit"
-                className="w-full bg-teal-600  text-white hover:bg-teal-900"
-              >
-                Log in
-              </Button>
-            </form>
-          )}
+          <EmailPassword login={true} signup={false} />
 
           <div className=" flex justify-center text-xs uppercase">
             <span className="bg-background px-2 text-muted-foreground">

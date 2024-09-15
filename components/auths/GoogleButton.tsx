@@ -26,7 +26,6 @@ const GoogleButton = () => {
       .then(async (result) => {
         const createdUser: string = await addNewUserToRealTimeDb(
           result.user,
-          dispatch
         );
 
         if (createdUser === kSuccessfulMessage) {
@@ -42,8 +41,8 @@ const GoogleButton = () => {
           setBtnIsLoading(false);
         } else if (createdUser === kUserCreatedAlready) {
           toast({
-            title: "User is already created",
-            description: "Please login",
+            title: "Successfully",
+            description: "Your login was successful",
           });
           setBtnIsLoading(false);
         }

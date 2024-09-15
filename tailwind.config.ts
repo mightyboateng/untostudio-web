@@ -50,6 +50,15 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+
+        // ------------------------------------
+        // --- Define the color you want to set
+        // ----------------------------------
+        default: {
+          DEFAULT: "hsl(var(--default))",
+          foreground: "hsl(var(--default-foreground))",
+          hover: "hsl(var(--default-hover))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

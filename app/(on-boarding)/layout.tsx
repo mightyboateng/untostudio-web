@@ -1,6 +1,5 @@
 "use client";
 
-import SideNavBar from "@/components/SideNavBar";
 import { auth } from "@/utils/firebase";
 import { checkIfUserIsCreatedAlready } from "@/utils/realtimeDb";
 import { onAuthStateChanged } from "firebase/auth";
@@ -18,19 +17,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           const checkUser: any = await checkIfUserIsCreatedAlready(user.uid);
           if (checkUser.length > 0) {
             if (checkUser[0].displayName) {
-              setIsAuthenticated(true);
+              router.push("/pro");
             } else {
-              router.push("/user-details");
-              setIsAuthenticated(false);
+              setIsAuthenticated(true);
             }
           }
         } else {
-          setIsAuthenticated(false);
           router.push("/verify-email");
         }
       } else {
-        console.log("User is signed out");
-        setIsAuthenticated(false);
         router.push("/log-in");
       }
     });
@@ -42,12 +37,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     return null; // or a loading spinner
   }
 
-  return (
-    <div className="flex h-screen w-full">
-      <SideNavBar />
-      <div className="flex-1">{children}</div>
-    </div>
-  );
+  return <div>{children}</div>;
 };
 
 export default Layout;

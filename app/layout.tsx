@@ -31,12 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-foreground bg-background`}
       >
-        <ReduxProviders>
-          <ThemeProviders attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProviders attribute="class" defaultTheme="system" enableSystem>
+          <ReduxProviders>
             {children}
             <Toaster />
-          </ThemeProviders>
-        </ReduxProviders>
+          </ReduxProviders>
+        </ThemeProviders>
       </body>
     </html>
   );

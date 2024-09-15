@@ -12,9 +12,15 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(" auth User is signed in");
-        setIsAuthenticated(false);
-        router.push("/pro");
+        if (user.emailVerified) {
+          console.log(" auth User is signed in and email is verified");
+          setIsAuthenticated(false);
+          router.push("/pro");
+        } else {
+          // console.log("auth User is signed in and email is not verified");
+          // setIsAuthenticated(false);
+          router.push("/verify-email");
+        }
       } else {
         console.log("auth User is signed out");
         setIsAuthenticated(true);
