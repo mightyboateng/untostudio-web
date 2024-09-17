@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import GooglePay from "@/payment-systems/GooglePay";
 import SubscribeButtonComponents from "@/stripe/components/SubscribeButtonComponents";
 import { ArrowBack, CheckOutlined } from "@mui/icons-material";
 import { CircleCheck } from "lucide-react";
@@ -67,6 +68,7 @@ const page = () => {
                     .NEXT_PUBLIC_STRIPE_SUBSCRIPTION_PRICE_ID_STARTER as string
                 }
               />
+              <GooglePay price="300" />
             </div>
           </div>
         </div>
