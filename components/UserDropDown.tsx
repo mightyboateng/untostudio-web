@@ -30,7 +30,7 @@ const UserDropDown = ({
   };
 
   return (
-    <div className="flex items-center gap-2 w-full">
+    <div className="flex items-center gap-2 w-full ">
       <DropdownMenu>
         <DropdownMenuTrigger className="flex items-center focus:outline-none border rounded p-2 w-full">
           <User />

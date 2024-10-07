@@ -42,17 +42,14 @@ const SideNavBar = () => {
 
   return (
     <>
-      <Button
-        onClick={toggleSidebar}
-        className={`md:hidden fixed top-4 left-4 z-50 ${
-          isCollapsed ? "ml-[60px]" : ""
-        }`}
-      >
-        {isCollapsed ? <MenuIcon /> : <Close />}
-      </Button>
+      <div className="w-fit h-fit my-4 mx-3 md:hidden">
+        {isCollapsed && (
+          <MenuIcon onClick={toggleSidebar} className="h-6 w-6" />
+        )}
+      </div>
       <aside
         className={`
-          flex flex-col items-start justify-between
+          flex flex-col items-start justify-between bg-secondary
           ${
             isMobile
               ? `fixed top-0 left-0 h-full z-40 bg-background
@@ -65,14 +62,21 @@ const SideNavBar = () => {
       >
         <div className="flex flex-col items-start gap-6 w-full">
           <div className="flex justify-between items-center gap-2 w-full border-b px-2 pb-4">
-            <Link href="#" prefetch={false}>
-              <YouTube className="h-6 w-6" />
-            </Link>
-            {!isMobile && (
+            {!isCollapsed && (
+              <Link href="#" prefetch={false}>
+                <YouTube className="h-6 w-6" />
+              </Link>
+            )}
+
+            {!isMobile && isCollapsed && (
               <MenuIcon className="cursor-pointer" onClick={toggleSidebar} />
             )}
+
+            {!isCollapsed && (
+              <Close className="cursor-pointer" onClick={toggleSidebar} />
+            )}
           </div>
-          <nav className="flex flex-col items-start gap-2 px-2 w-full">
+          <nav className="flex flex-col items-start gap-2 px- ">
             <NavLink
               href="#"
               icon={<HomeIcon className="h-5 w-5" />}
@@ -130,9 +134,11 @@ const NavLink = ({
     href={href}
     className={`
       flex items-center gap-3 rounded-md px-3 py-2 w-full
-      transition-colors hover:bg-[#2c2c2c]
+      transition-colors hover:bg-default-hover/15 
       ${isCollapsed ? "justify-center" : ""}
     `}
+    aria-label={text}
+    
     prefetch={false}
   >
     {icon}
