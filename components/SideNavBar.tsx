@@ -76,7 +76,7 @@ const SideNavBar = () => {
               <Close className="cursor-pointer" onClick={toggleSidebar} />
             )}
           </div>
-          <nav className="flex flex-col items-start gap-2 px- ">
+          <nav className="flex flex-col items-start gap-2 w-full ">
             <NavLink
               href="#"
               icon={<HomeIcon className="h-5 w-5" />}
