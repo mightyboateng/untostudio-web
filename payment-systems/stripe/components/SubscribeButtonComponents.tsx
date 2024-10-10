@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 
-const SubscribeButtonComponents = ({
+const StripeSubscribeButtonComponents = ({
   btnText,
   priceId,
 }: {
@@ -53,4 +53,4 @@ const SubscribeButtonComponents = ({
   );
 };
 
-export default SubscribeButtonComponents;
+export default StripeSubscribeButtonComponents;

@@ -32,6 +32,12 @@
 - If payment is failed, user is redirected to the failed page
 
 
+## (about the google pay)
+
+
+## (about the paystack)
+
+
 ## (about the colors)
 
 - Give the variable name of your colors in the tailwind.config.ts file.

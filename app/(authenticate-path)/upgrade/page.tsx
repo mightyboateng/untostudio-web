@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import GooglePay from "@/payment-systems/GooglePay";
-import SubscribeButtonComponents from "@/stripe/components/SubscribeButtonComponents";
+import PaystackRedirectPaymentButton from "@/payment-systems/paystack/RedirectPaymentButton";
+import StripeSubscribeButtonComponents from "@/payment-systems/stripe/components/SubscribeButtonComponents";
 import { ArrowBack, CheckOutlined } from "@mui/icons-material";
 import { CircleCheck } from "lucide-react";
 import React from "react";
@@ -60,9 +61,10 @@ const page = () => {
                   <p>Unlimited access to all features.</p>
                 </div>
               </div>
+              <PaystackRedirectPaymentButton btnText="Paystack Subscribe to pro" />
 
-              <SubscribeButtonComponents
-                btnText="Subscribe to pro"
+              <StripeSubscribeButtonComponents
+                btnText="Stripe Subscribe to pro"
                 priceId={
                   process.env
                     .NEXT_PUBLIC_STRIPE_SUBSCRIPTION_PRICE_ID_STARTER as string
