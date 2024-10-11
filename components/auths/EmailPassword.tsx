@@ -25,6 +25,7 @@ import {
 import { FirebaseError } from "firebase/app";
 import { store } from "@/redux/store";
 import { setUserDetail } from "@/redux/slides/userSlice";
+import Link from "next/link";
 
 const EmailPassword = ({
   login,
@@ -208,6 +209,16 @@ const EmailPassword = ({
             placeholder="**********"
           />
         </div>
+        {login && (
+          <div>
+            <Link
+              href="/forgot-password"
+              className="text-sm text-default-hover"
+            >
+              Forgot password?
+            </Link>
+          </div>
+        )}
         <Button
           type="submit"
           disabled={isLoading}
