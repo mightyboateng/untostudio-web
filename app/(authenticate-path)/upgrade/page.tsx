@@ -61,7 +61,7 @@ const page = () => {
                   <p>Unlimited access to all features.</p>
                 </div>
               </div>
-              <PaystackRedirectPaymentButton btnText="Paystack Subscribe to pro" />
+              <PaystackRedirectPaymentButton amount={200}  btnText="Paystack Subscribe to pro" />
 
               <StripeSubscribeButtonComponents
                 btnText="Stripe Subscribe to pro"

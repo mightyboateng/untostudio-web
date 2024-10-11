@@ -2,13 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   const payload = await request.json();
-  console.log("payload", payload);
+  const { email, amount, userId, userDatabaseId } = payload;
 
   const params = {
-    email: "customer@email.com",
-    amount: 20000,
+    email: email,
+    amount: amount * 100,
     currency: "GHS",
-    callback_url: "http://localhost:3000/upgrade/successful",
+    callback_url: `http://${process.env.NEXT_BASE_URL}/upgrade/successful`,
+    metadata: {
+      // add any thing you want to add to metadata here. To be use in the webhook
+      userId: userId,
+      userDatabaseId: userDatabaseId,
+    },
   };
 
   const options = {
