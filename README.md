@@ -1,14 +1,17 @@
-
 <!-- /-------------------------------------------------- -->
 
-## (about the path system)
+# An introduction to the project
+
+This project is meant for a starter template for any project.
+
+#### (about the path system)
 
 - the (auth) is holding the signup and login folders with a layout checking if there is a user.
 - the (authenticate-path) is holding the folders which verified users can go to
 - the (path) is holding the folders which any user can go to.
 - the (admin) is holding the admin rights only
 
-## (about the packages)
+#### (about the packages)
 
 - icons = lucide-react, mui
 - shadcn = manage ui components
@@ -16,12 +19,16 @@
 - database = firebase
 - auth = firebase
 
-## (about auth controllers)
+#### (about auth controllers)
+
 - in the boiler-plate-controllers/auth-controls.tsx
 - Control which authentication you want to add to your app. Just set it to `true` then you are good to go
 
+## Payment Systems
 
-## (about the stripe)
+Adding the following payment systems to the app;
+
+#### Stripe
 
 - you can add your stripe product id in the .env.local file.
 - change the "loggedUser.id" in the checkout_subscribe_session and checkout_one_time_session routes with current user id.
@@ -31,12 +38,11 @@
 - After successful payment, user is redirected to the success page
 - If payment is failed, user is redirected to the failed page
 
+#### Google pay
 
-## (about the google pay)
+#### Paystack
 
-
-## (about the paystack)
-
+- Add paystack payment
 
 ## (about the colors)
 
