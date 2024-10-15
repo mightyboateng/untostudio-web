@@ -6,4 +6,5 @@ export const boilerAuth = {
   apple: true,
   microsoft: true,
   email_password: true,
+  email_link_sign_in:true,
 };

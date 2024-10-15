@@ -22,6 +22,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               setIsAuthenticated(true);
             }
           }
+          setIsAuthenticated(true);
         } else {
           router.push("/verify-email");
         }

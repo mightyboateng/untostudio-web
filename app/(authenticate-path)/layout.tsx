@@ -3,7 +3,13 @@
 import SideNavBar from "@/components/SideNavBar";
 import { auth } from "@/utils/firebase";
 import { checkIfUserIsCreatedAlready } from "@/utils/realtimeDb";
-import { onAuthStateChanged } from "firebase/auth";
+import {
+  getAuth,
+  isSignInWithEmailLink,
+  signInWithEmailLink,
+  onAuthStateChanged,getAdditionalUserInfo
+} from "firebase/auth";
+
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -20,9 +26,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             if (checkUser[0].displayName) {
               setIsAuthenticated(true);
             } else {
+              console.log('user is not created')
               router.push("/user-details");
               setIsAuthenticated(false);
             }
+          }else{
+            console.log('user is not created in realtime db')
+            router.push("/user-details");
           }
         } else {
           setIsAuthenticated(false);
