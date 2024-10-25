@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import GooglePay from "@/payment-systems/GooglePay";
+import PopUpPaymentButton from "@/payment-systems/paystack/PopUpPaymentButton";
 import PaystackRedirectPaymentButton from "@/payment-systems/paystack/RedirectPaymentButton";
 import StripeSubscribeButtonComponents from "@/payment-systems/stripe/components/SubscribeButtonComponents";
 import { ArrowBack, CheckOutlined } from "@mui/icons-material";
@@ -61,7 +62,15 @@ const page = () => {
                   <p>Unlimited access to all features.</p>
                 </div>
               </div>
-              <PaystackRedirectPaymentButton amount={200}  btnText="Paystack Subscribe to pro" />
+              <PaystackRedirectPaymentButton
+                amount={200}
+                btnText="Paystack Subscribe to pro"
+              />
+
+              <PopUpPaymentButton
+                amount={300}
+                btnText="Paystack on time payment"
+              />
 
               <StripeSubscribeButtonComponents
                 btnText="Stripe Subscribe to pro"

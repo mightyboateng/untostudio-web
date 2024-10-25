@@ -85,7 +85,6 @@ export const updateUserDetails = async ({
 };
 
 export const checkIfUserIsCreatedAlready = async (userUid: string) => {
-  console.log("checking user", userUid);
   return new Promise((resolve) => {
     onValue(
       queryUserDB,

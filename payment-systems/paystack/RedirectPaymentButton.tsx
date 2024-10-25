@@ -5,8 +5,9 @@ import { reduxUserType } from "@/types/userType";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { handleConvertCurrency } from "./convertCurrency";
 
 const PaystackRedirectPaymentButton = ({
   btnText,
@@ -16,9 +17,18 @@ const PaystackRedirectPaymentButton = ({
   amount: number;
 }) => {
   const [loading, setLoading] = useState(false);
+  const [convertedPrice, setConvertedPrice] = useState(0);
   const router = useRouter();
 
-  const user = useSelector((state:reduxUserType) => state.user.user)
+  const user = useSelector((state: reduxUserType) => state.user.user);
+
+  useEffect(() => {
+    const convertCurrency = async () => {
+      const price = await handleConvertCurrency({ price: amount });
+      setConvertedPrice(price);
+    };
+    convertCurrency();
+  });
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -26,9 +36,9 @@ const PaystackRedirectPaymentButton = ({
     try {
       const response = await axios.post("/api/paystack/pay-redirect", {
         email: user.email,
-        amount: amount,
-        userId:user.uid,
-        userDatabaseId:user.databaseId
+        amount: convertedPrice,
+        userId: user.uid,
+        userDatabaseId: user.databaseId,
       });
       const data = response.data;
       if (!data.ok) throw new Error("Something went wrong");

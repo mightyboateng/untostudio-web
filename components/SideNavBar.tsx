@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 import { reduxUserType } from "@/types/userType";
 
 const SideNavBar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
   const userDetail = useSelector((state: reduxUserType) => state.user.user);
