@@ -49,7 +49,7 @@ const SideNavBar = () => {
       </div>
       <aside
         className={`
-          flex flex-col items-start justify-between bg-secondary
+          flex flex-col items-start justify-between bg-secondary 
           ${
             isMobile
               ? `fixed top-0 left-0 h-full z-40 bg-background
@@ -58,6 +58,7 @@ const SideNavBar = () => {
           }
           px-2 border-r py-6
           transition-all duration-300
+        
         `}
       >
         <div className="flex flex-col items-start gap-6 w-full">

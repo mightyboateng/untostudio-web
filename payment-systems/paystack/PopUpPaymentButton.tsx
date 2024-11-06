@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { usePaystackPayment } from "react-paystack";
 import { Button } from "@/components/ui/button";
 import { HookConfig } from "react-paystack/dist/types";
@@ -36,7 +35,7 @@ const PopUpPaymentButton = ({
     email: user.email,
     currency: "GHS",
     amount: convertedPrice * 100,
-    publicKey: process.env.NEXT_PAYSTACK_PUBLIC_KEY,
+    publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
   };
 
   // After a successful transaction with paystack
