@@ -1,20 +1,8 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProviders } from "@/components/theme/ThemeProviders";
 import { ReduxProviders } from "@/redux/ReduxProviders";
 import { Toaster } from "@/components/ui/toaster";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export const metadata: Metadata = {
   title: "Boiler plate",
@@ -27,10 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased text-foreground bg-background`}
-      >
+    <html lang="en" suppressHydrationWarning>
+      <body className={`antialiased text-foreground bg-background`}>
         <ThemeProviders attribute="class" defaultTheme="system" enableSystem>
           <ReduxProviders>
             {children}

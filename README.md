@@ -16,8 +16,7 @@ This project is meant for a starter template for any project.
 - icons = lucide-react, mui
 - shadcn = manage ui components
 - state manager = redux
-- database = firebase
-- auth = firebase
+
 
 #### (about auth controllers)
 
@@ -49,3 +48,13 @@ Adding the following payment systems to the app;
 - Give the variable name of your colors in the tailwind.config.ts file.
 - Select the color from the "default" section in the tailwind.config.ts file.
 - Set the colors in the globals.css file. and start using it.
+
+
+## (backend as a service)
+Using the firebase for the backend for the main branch
+- database = firebase
+- auth = firebase
+
+Using the appwrite for the backend for the appwrite-branch branch
+- database = appwrite
+- auth = appwrite

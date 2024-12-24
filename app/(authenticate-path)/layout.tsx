@@ -4,10 +4,7 @@ import SideNavBar from "@/components/SideNavBar";
 import { auth } from "@/utils/firebase";
 import { checkIfUserIsCreatedAlready } from "@/utils/realtimeDb";
 import {
-  getAuth,
-  isSignInWithEmailLink,
-  signInWithEmailLink,
-  onAuthStateChanged,getAdditionalUserInfo
+  onAuthStateChanged,
 } from "firebase/auth";
 
 import { useRouter } from "next/navigation";

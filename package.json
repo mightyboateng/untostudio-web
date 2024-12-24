@@ -8,6 +8,11 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "packageManager": "npm@22.1.0",
+  "overrides": {
+    "react": "$react",
+    "react-dom": "$react-dom"
+  },
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
@@ -26,12 +31,13 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "easy-currencies": "^1.8.1",
+    "eslint-config-next": "^15.1.2",
     "firebase": "^10.13.1",
     "lucide-react": "^0.439.0",
-    "next": "14.2.9",
+    "next": "^15.1.2",
     "next-themes": "^0.3.0",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^19.0.0-rc.1",
+    "react-dom": "^19.0.0-rc.1",
     "react-paystack": "^6.0.0",
     "react-redux": "^9.1.2",
     "redux-persist": "^6.0.0",
@@ -45,6 +51,9 @@
     "@types/react-dom": "^18",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.2",
+    "@eslint/eslintrc": "^3"
   }
 }

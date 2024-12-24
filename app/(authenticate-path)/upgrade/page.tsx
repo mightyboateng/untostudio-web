@@ -3,10 +3,9 @@ import GooglePay from "@/payment-systems/GooglePay";
 import PopUpPaymentButton from "@/payment-systems/paystack/PopUpPaymentButton";
 import PaystackRedirectPaymentButton from "@/payment-systems/paystack/RedirectPaymentButton";
 import StripeSubscribeButtonComponents from "@/payment-systems/stripe/components/SubscribeButtonComponents";
-import { ArrowBack, CheckOutlined } from "@mui/icons-material";
+import { ArrowBack } from "@mui/icons-material";
 import { CircleCheck } from "lucide-react";
 import React from "react";
-import Stripe from "stripe";
 
 const page = () => {
   return (
