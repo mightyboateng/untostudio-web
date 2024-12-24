@@ -1,17 +1,14 @@
 "use client";
 
-import { Close, Menu, Person } from "@mui/icons-material";
+import { Close } from "@mui/icons-material";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import { Button } from "./ui/button";
 import {
   HomeIcon,
   TrendingUpIcon,
   ShoppingCartIcon,
   LibraryIcon,
   CalendarIcon,
-  SettingsIcon,
-  LogOutIcon,
   MenuIcon,
 } from "lucide-react";
 import { YouTube } from "@mui/icons-material";

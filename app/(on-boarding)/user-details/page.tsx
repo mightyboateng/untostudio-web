@@ -1,27 +1,18 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/hooks/use-toast";
-import { kSuccessfulMessage } from "@/utils/constants";
-import { auth } from "@/utils/firebase";
-import {
-  checkIfUserIsCreatedAlready,
-  updateUserDetails,
-} from "@/utils/realtimeDb";
-import { Person, Photo } from "@mui/icons-material";
-import { Loader2, User, XIcon } from "lucide-react";
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
-import { reduxUserType } from "@/types/userType";
+// import { toast } from "@/hooks/use-toast";
+// import { kSuccessfulMessage } from "@/utils/constants";
+
+import {  User } from "lucide-react";
 
 const page = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const router = useRouter();
-  const userDetail = useSelector((state: reduxUserType) => state.user.user);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState("");
+  // const [success, setSuccess] = useState("");
+  // const router = useRouter();
+  // const userDetail = useSelector((state: reduxUserType) => state.user.user);
 
   //   useEffect(() => {
   //   const user = auth.currentUser;
@@ -30,43 +21,13 @@ const page = () => {
   //   }
   // }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    const formData = new FormData(e.target as HTMLFormElement);
 
-    const fullName = formData.get("fullName");
-
-    try {
-      const checkUser: any = await checkIfUserIsCreatedAlready(
-        auth?.currentUser?.uid || ""
-      );
-
-      if (checkUser.length > 0) {
-        const userResult = await updateUserDetails({
-          userDetail: userDetail,
-          databaseId: checkUser[0].databaseId,
-          displayName: fullName as string,
-        });
-        if (userResult === kSuccessfulMessage) {
-          router.push("/pro");
-        }
-      }
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Something went wrong",
-      });
-      setIsLoading(false);
-      console.log(error);
-    }
-  };
 
   return (
     <div className="min-h-screen flex justify-center items-center ">
       <form
         className="flex flex-col p-8 space-y-4 md:min-w-96"
-        onSubmit={handleSubmit}
+        
       >
         <div className="flex flex-col items-center">
           <label className="mt-2 cursor-pointer">
@@ -107,7 +68,7 @@ const page = () => {
           className="border rounded-md p-2"
         /> */}
 
-        <Button
+        {/* <Button
           type="submit"
           disabled={isLoading}
           className="mt-4 bg-default hover:bg-default-hover text-default-foreground font-bold py-2 px-4"
@@ -117,7 +78,7 @@ const page = () => {
           ) : (
             "Continue"
           )}
-        </Button>
+        </Button> */}
       </form>
     </div>
   );

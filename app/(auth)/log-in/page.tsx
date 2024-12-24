@@ -15,10 +15,16 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="md:mx-auto mx-5 w-full max-w-md space-y-8">
+      <div className="md:mx-auto mx-5 w-full max-w-md space-y-8 md:py-0 py-8">
         <div className="flex flex-col items-center space-y-2">
           <Link href="/">
-            <Image src="/logo.png" alt="logo" width={70} height={70} />
+            <Image
+              src="/logo.png"
+              alt="logo"
+              width={50}
+              height={50}
+              priority={true}
+            />
           </Link>
           <h2 className="text-2xl font-bold">Welcome back</h2>
           <p className="text-sm text-muted-foreground">Login here</p>
@@ -54,7 +60,7 @@ const page = () => {
             )}
           </div>
           <div className="text-center text-sm text-muted-foreground">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link
               href="/sign-up"
               className="underline text-teal-600"

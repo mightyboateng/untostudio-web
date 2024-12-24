@@ -3,17 +3,14 @@
 import { boilerAuth } from "@/boiler-plate-controllers/auth-controls";
 import React from "react";
 import { Button } from "../ui/button";
-import { Google } from "@mui/icons-material";
-const GoogleButton = () => {
-
-  const googleHandler = () => {
-
-  };
+import { Microsoft } from "@mui/icons-material";
+const AppleButton = () => {
+  const gitHubHandler = () => {};
   return (
-    boilerAuth.google && (
+    boilerAuth.apple && (
       <Button
         variant="outline"
-        onClick={googleHandler}
+        onClick={gitHubHandler}
         // disabled={btnIsLoading}
         className="w-full border-teal-600"
       >
@@ -25,11 +22,11 @@ const GoogleButton = () => {
             Google
           </>
         )} */}
-        <Google className="mr-2 h-4 w-4" />
-        Google
+        <Microsoft className="mr-2 h-4 w-4" />
+        Apple
       </Button>
     )
   );
 };
 
-export default GoogleButton;
+export default AppleButton;

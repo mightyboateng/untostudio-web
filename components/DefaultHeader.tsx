@@ -1,23 +1,12 @@
 "use client";
 
-import { Close, Menu, Person } from "@mui/icons-material";
 import Link from "next/link";
-import React, { useState } from "react";
-import { Button } from "./ui/button";
+import React from "react";
 import { ThemeSwitcher } from "./theme/ThemeSwitcher";
-import { LogOut, Settings, User } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import UserDropDown from "./UserDropDown";
+
 
 const DefaultHeader = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <nav className="bg-background  py-4 md:py-6 top-0 z-10 w-full">
@@ -41,9 +30,9 @@ const DefaultHeader = () => {
           </div> */}
           <div
             className={`md:flex md:gap-6 ${
-              isMenuOpen
-                ? "flex flex-col absolute top-full left-0 right-0 bg-gray-100 p-4"
-                : "hidden"
+              // isMenuOpen
+                "flex flex-col absolute top-full left-0 right-0 bg-gray-100 p-4"
+                // : "hidden"
             }`}
           >
             <Link

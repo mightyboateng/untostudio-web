@@ -39,9 +39,10 @@ const PopUpPaymentButton = ({
   };
 
   // After a successful transaction with paystack
-  const onSuccess = async (reference: any) => {
+  const onSuccess = async (reference: unknown) => {
     try {
       setLoading(false);
+      console.log("reference", reference);
     } catch (error) {
       console.log("error", error);
       setLoading(false);

@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from 'next/image'
+// import Image from 'next/image'
 
 const TechStackSection = () => {
   return (
@@ -27,7 +27,7 @@ const TechStackSection = () => {
             I use these technologies to build my products.
           </p>
         </div>
-        <div className="relative w-full overflow-hidden rounded-lg bg-muted/20 py-4">
+        {/* <div className="relative w-full overflow-hidden rounded-lg bg-muted/20 py-4">
           <div className="flex items-center gap-8 animate-marquee whitespace-nowrap">
             <div className="flex items-center gap-4">
               <img
@@ -90,7 +90,7 @@ const TechStackSection = () => {
               <span className="text-lg font-medium">MongoDB</span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -99,13 +99,13 @@ const TechStackSection = () => {
 export default TechStackSection
 
 
-const stacks = [
-  "/stacks/next.png",
-  "/stacks/redux.png",
-  // "/stacks/firebase.png",
-  // "/stacks/google.png",
-  // "/stacks/paystack.png",
-];
+// const stacks = [
+//   "/stacks/next.png",
+//   "/stacks/redux.png",
+//   // "/stacks/firebase.png",
+//   // "/stacks/google.png",
+//   // "/stacks/paystack.png",
+// ];
 
 // /**
 //  * v0 by Vercel.

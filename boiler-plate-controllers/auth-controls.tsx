@@ -1,4 +1,3 @@
-import { GoogleAuthProvider } from "firebase/auth";
 
 export const boilerAuth = {
   gitAuth: true,

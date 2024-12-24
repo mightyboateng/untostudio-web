@@ -1,5 +1,5 @@
-import { redirect, useRouter } from "next/navigation";
+// import { redirect, useRouter } from "next/navigation";
 
-export function routeTo(path: string) {
-  redirect(path);
-}
+// export function routeTo(path: string) {
+//   redirect(path);
+// }

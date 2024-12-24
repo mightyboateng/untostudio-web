@@ -9,10 +9,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { signOut } from "firebase/auth";
-import { useDispatch } from "react-redux";
-import { setUserDetail } from "@/redux/slides/userSlice";
-import { auth } from "@/utils/firebase";
+// import { useDispatch } from "react-redux";
+// import { setUserDetail } from "@/redux/slides/userSlice";
 
 const UserDropDown = ({
   username,
@@ -21,12 +19,12 @@ const UserDropDown = ({
   username: string;
   isCollapsed: boolean;
 }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const signUserLog = async () => {
-    signOut(auth).then(() => {
-      dispatch(setUserDetail(null));
-    });
+    // signOut(auth).then(() => {
+    //   dispatch(setUserDetail(null));
+    // });
   };
 
   return (
