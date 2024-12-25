@@ -1,11 +1,8 @@
 import Link from "next/link";
-import GoogleButton from "@/components/auths/GoogleButton";
 import { Metadata } from "next";
 import Image from "next/image";
 import EmailLinkSignIn from "@/components/auths/EmailLinkSignIn";
-import GitHubButton from "@/components/auths/GitHubButton";
-import MicrosoftButton from "@/components/auths/MicrosoftButton";
-import AppleButton from "@/components/auths/AppleButton";
+import SocialLoginComponent from "@/components/auths/SocialLoginComponent";
 
 export const metadata: Metadata = {
   title: "Connect here | Boiler plate",
@@ -40,12 +37,7 @@ const page = () => {
             </span>
           </div>
 
-          <div className="grid gap-4">
-            <GoogleButton />
-            <GitHubButton />
-            <MicrosoftButton />
-            <AppleButton />
-          </div>
+          <SocialLoginComponent />
         </div>
       </div>
     </div>

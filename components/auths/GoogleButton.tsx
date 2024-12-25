@@ -1,32 +1,39 @@
 "use client";
 
 import { boilerAuth } from "@/boiler-plate-controllers/auth-controls";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { Google } from "@mui/icons-material";
-const GoogleButton = () => {
+import { useDispatch } from "react-redux";
+import { setDisableOtherLoginOptions } from "@/redux/slides/localState";
+import { Loader2 } from "lucide-react";
+const GoogleButton = ({ disableButton }: { disableButton: boolean }) => {
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
 
   const googleHandler = () => {
+    dispatch(setDisableOtherLoginOptions(true));
 
+    setIsLoading(true);
   };
+
   return (
     boilerAuth.google && (
       <Button
         variant="outline"
         onClick={googleHandler}
-        // disabled={btnIsLoading}
+        disabled={disableButton}
         className="w-full border-teal-600"
       >
-        {/* {btnIsLoading ? (
+        {isLoading ? (
           <Loader2 className="animate-spin" />
         ) : (
           <>
             <Google className="mr-2 h-4 w-4" />
             Google
           </>
-        )} */}
-        <Google className="mr-2 h-4 w-4" />
-        Google
+        )}
+        
       </Button>
     )
   );

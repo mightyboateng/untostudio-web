@@ -3,10 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import EmailPassword from "@/components/auths/EmailPassword";
-import GoogleButton from "@/components/auths/GoogleButton";
-import GitHubButton from "@/components/auths/GitHubButton";
-import MicrosoftButton from "@/components/auths/MicrosoftButton";
-import AppleButton from "@/components/auths/AppleButton";
+import SocialLoginComponent from "@/components/auths/SocialLoginComponent";
 
 
 export const metadata: Metadata = {
@@ -35,12 +32,7 @@ const page = () => {
             </span>
           </div>
 
-          <div className="grid gap-4">
-            <GoogleButton />
-            <GitHubButton />
-            <MicrosoftButton />
-            <AppleButton />
-          </div>
+          <SocialLoginComponent />
           <div className="text-center text-sm text-muted-foreground">
             Already have an account?{" "}
             <Link
