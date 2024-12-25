@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import { Loader2 } from "lucide-react";
-import { appWriteAccount } from "@/utils/app-write";
 import { redirect } from "next/navigation";
 import { appRoutes } from "@/utils/constants";
+import { appWriteCreateAdminClient } from "@/lib/server/app-write";
 
 const page = async ({
   searchParams,
@@ -14,9 +14,16 @@ const page = async ({
     const secret = (await searchParams).secret;
     const userId = (await searchParams).userId;
 
-    await appWriteAccount().createSession(userId, secret);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { account } = await appWriteCreateAdminClient();
+
+    const session = await account.createSession(userId, secret);
+    console.log("session", session);
+
+    // if (user) {
+    //   redirect(appRoutes.pro);
+    // }
   } catch (error) {
+    console.log("error", error);
     redirect(appRoutes.login);
   }
 

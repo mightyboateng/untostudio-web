@@ -5,7 +5,7 @@ export const kUserCreatedAlready = "User created already";
 export const appDetails = {};
 
 export const appRoutes = {
-  pro: "/pro",
+  home: "/pro",
   landing: "/",
   login: "/connect",
   verifyEmail: "/connect/verifying-user-email",
