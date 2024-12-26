@@ -1,21 +1,27 @@
-// import { Account, Client } from "appwrite";
+// import { Account, Client, Databases, Storage } from "appwrite";
 import { Account, Client, Databases, Storage } from "node-appwrite";
 
-// export const appWriteClient = () => {
+// export const appWriteClient = async() => {
 //   const client = new Client();
 
 //   client
 //     .setEndpoint(process.env.NEXT_PUBLIC_ENDPOINT!)
 //     .setProject(process.env.NEXT_PUBLIC_PROJECT!);
 
-//   return client;
+//     return {
+//       get account() {
+//         return new Account(client);
+//       },
+//       get database() {
+//         return new Databases(client);
+//       },
+//       get storage() {
+//         return new Storage(client);
+//       },
+//     };
 // };
 
-// export const appWriteAccount = () => {
-//   const account = new Account(appWriteClient());
 
-//   return account;
-// };
 
 export const appWriteCreateAdminClient = async () => {
   const client = new Client();

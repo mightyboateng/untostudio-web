@@ -2,7 +2,9 @@ import React from "react";
 import Image from "next/image";
 import { Loader2 } from "lucide-react";
 import { redirect } from "next/navigation";
-import { appRoutes } from "@/utils/constants";
+import { appRoutes } from "@/lib/constants";
+// import { appWriteClient } from "@/lib/server/app-write";
+import { cookies } from "next/headers";
 import { appWriteCreateAdminClient } from "@/lib/server/app-write";
 
 const page = async ({
@@ -17,14 +19,14 @@ const page = async ({
     const { account } = await appWriteCreateAdminClient();
 
     const session = await account.createSession(userId, secret);
-    console.log("session", session);
+    // console.log("session", session);
 
     // if (user) {
     //   redirect(appRoutes.pro);
     // }
   } catch (error) {
     console.log("error", error);
-    redirect(appRoutes.login);
+    // redirect(appRoutes.login);
   }
 
   return (

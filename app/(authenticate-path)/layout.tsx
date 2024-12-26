@@ -1,6 +1,6 @@
 import SideNavBar from "@/components/SideNavBar";
 import { appWriteAccount } from "@/lib/server/app-write";
-import { appRoutes } from "@/utils/constants";
+import { appRoutes } from "@/lib/constants";
 import { redirect } from "next/navigation";
 import React from "react";
 

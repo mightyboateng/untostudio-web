@@ -12,6 +12,7 @@ import { localStateType } from "@/types/localType";
 import { setDisableOtherLoginOptions } from "@/redux/slides/localState";
 import { appWriteCreateAdminClient } from "@/lib/server/app-write";
 import { ID } from "node-appwrite";
+// import { appWriteClient } from "@/lib/server/app-write";
 // import { appWriteAccount } from "@/utils/app-write";
 // import { ID } from "appwrite";
 
@@ -35,7 +36,7 @@ const EmailLinkSignIn = () => {
     await account.createMagicURLToken(
       ID.unique(),
       email,
-      `${window.location.origin}/api/appwrite/auth-callback/magic-link`
+      `${window.location.origin}/api/appwrite/session`
     );
 
     // const result = await appWriteAccount().createMagicURLToken(

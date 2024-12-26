@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
+  
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
       <div className="md:mx-auto mx-5 w-full max-w-md space-y-8 md:py-0 py-8">

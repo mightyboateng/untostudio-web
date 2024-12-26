@@ -1,5 +1,6 @@
+// import { appWriteClient } from "@/lib/server/app-write";
 import { appWriteCreateAdminClient } from "@/lib/server/app-write";
-import { appRoutes } from "@/utils/constants";
+import { appRoutes } from "@/lib/constants";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -22,6 +23,8 @@ export async function GET(request: NextRequest) {
 
       path: appRoutes.home,
     });
+
+    console.log("cookies ----", (await cookies()).get("session"));
 
     // if (user) {
     //   return NextResponse.redirect("/app");

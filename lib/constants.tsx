@@ -7,6 +7,6 @@ export const appDetails = {};
 export const appRoutes = {
   home: "/pro",
   landing: "/",
-  login: "/connect",
+  login: "/log-in",
   verifyEmail: "/connect/verifying-user-email",
 };
