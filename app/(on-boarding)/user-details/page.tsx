@@ -1,33 +1,64 @@
-"use client";
-
-// import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
+import { appDetails, appRoutes } from "@/lib/constants";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-// import { toast } from "@/hooks/use-toast";
-// import { kSuccessfulMessage } from "@/utils/constants";
+import { createSessionClient } from "@/lib/server/app-write";
+import { User } from "lucide-react";
+import { ID } from "node-appwrite";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-import {  User } from "lucide-react";
+export const metadata: Metadata = {
+  title: `Onboarding process | ${appDetails.name}`,
+  description: "Complete the onboarding process and you are good to go!",
+};
 
-const page = () => {
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState("");
-  // const [success, setSuccess] = useState("");
-  // const router = useRouter();
-  // const userDetail = useSelector((state: reduxUserType) => state.user.user);
+const page = async () => {
+  async function handleSubmit(formData: FormData) {
+    "use server";
 
-  //   useEffect(() => {
-  //   const user = auth.currentUser;
-  //   if (user) {
-  //     setEmail(user.email || "");
-  //   }
-  // }, []);
+    const username = formData.get("username") as string;
 
+    const { databases } = await createSessionClient();
 
+    const { account } = await createSessionClient();
+
+    const user = await account.get();
+
+    const response = await databases.createDocument(
+      process.env.NEXT_PUBLIC_DATABASE!,
+      process.env.NEXT_PUBLIC_USERS_COLLECTION!,
+      ID.unique(),
+      {
+        username,
+        uid: user.$id,
+        email: user.email,
+        createdAt: user.$createdAt,
+      }
+    );
+
+    if (response) {
+      (await cookies()).set(
+        "user",
+        JSON.stringify({
+          username,
+          uid: user.$id,
+          email: user.email,
+          isAdmin: false,
+          photoUrl: null,
+          userType: null,
+        })
+      );
+
+      redirect(appRoutes.home)
+    }
+  }
 
   return (
     <div className="min-h-screen flex justify-center items-center ">
       <form
         className="flex flex-col p-8 space-y-4 md:min-w-96"
-        
+        action={handleSubmit}
       >
         <div className="flex flex-col items-center">
           <label className="mt-2 cursor-pointer">
@@ -48,7 +79,7 @@ const page = () => {
         <div className="flex gap-4">
           <Input
             type="text"
-            name="fullName"
+            name="username"
             aria-label="full name"
             required={true}
             placeholder="Enter your full name"
@@ -68,17 +99,12 @@ const page = () => {
           className="border rounded-md p-2"
         /> */}
 
-        {/* <Button
+        <Button
           type="submit"
-          disabled={isLoading}
           className="mt-4 bg-default hover:bg-default-hover text-default-foreground font-bold py-2 px-4"
         >
-          {isLoading ? (
-            <Loader2 className="w-4 h-4 animate-spin" />
-          ) : (
-            "Continue"
-          )}
-        </Button> */}
+          Continue
+        </Button>
       </form>
     </div>
   );

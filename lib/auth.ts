@@ -11,9 +11,7 @@ const auth = {
 
     try {
       if (auth.sessionCookies?.value) {
-        const { account } = await createSessionClient(
-          auth.sessionCookies.value
-        );
+        const { account } = await createSessionClient();
 
         auth.user = await account.get();
       }

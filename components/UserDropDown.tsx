@@ -9,23 +9,40 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+// import { cookies } from "next/headers";
 // import { useDispatch } from "react-redux";
 // import { setUserDetail } from "@/redux/slides/userSlice";
 
 const UserDropDown = ({
-  username,
+  // username,
   isCollapsed,
 }: {
-  username: string;
+  // username: string;
   isCollapsed: boolean;
 }) => {
   // const dispatch = useDispatch();
+  // const user = (await cookies()).get("user")
+  //   ? JSON.parse((await cookies()).get("user")?.value || "{}")
+  //   : null;
 
-  const signUserLog = async () => {
-    // signOut(auth).then(() => {
-    //   dispatch(setUserDetail(null));
-    // });
-  };
+  // const handleSignOut = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const response = await fetch("/auth/sign-out", {
+  //       method: "POST",
+  //     });
+  //     if (response.ok) {
+  //       store.dispatch(setUser(null));
+  //       window.location.href = "/";
+  //     } else {
+  //       console.error("Sign out failed:", response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.error("Sign out error:", error);
+  //   }
+  // };
 
   return (
     <div className="flex items-center gap-2 w-full ">
@@ -34,14 +51,14 @@ const UserDropDown = ({
           <User />
           {!isCollapsed && (
             <span className="ml-2 text-sm font-medium line-clamp-1 overflow-hidden">
-              {username}
+              {"user?.username"}
             </span>
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-48">
           <DropdownMenuLabel className="text-center py-2">
             <span className="text-sm font-medium line-clamp-1 overflow-hidden">
-              {username}
+              {"user?.username"}
             </span>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
@@ -54,12 +71,16 @@ const UserDropDown = ({
             <Settings className="w-4 h-4" /> Settings
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem
-            className="flex items-center gap-2 text-red-500 cursor-pointer"
-            onClick={signUserLog}
-          >
-            <LogOut className="w-4 h-4" /> Logout
-          </DropdownMenuItem>
+          <form action="/api/signout" method="POST">
+            <DropdownMenuItem
+              className="focus:bg-transparent"
+              // onClick={signUserLog}
+            >
+              <Button type="submit" className="w-full bg-red-500 hover:bg-red-700">
+                <LogOut className="w-4 h-4 mr-2" /> Logout
+              </Button>
+            </DropdownMenuItem>
+          </form>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

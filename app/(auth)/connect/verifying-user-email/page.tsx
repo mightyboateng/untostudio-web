@@ -3,27 +3,38 @@ import Image from "next/image";
 import { Loader2 } from "lucide-react";
 import { redirect } from "next/navigation";
 import { appRoutes } from "@/lib/constants";
-// import { appWriteClient } from "@/lib/server/app-write";
-import { cookies } from "next/headers";
-import { appWriteCreateAdminClient } from "@/lib/server/app-write";
+import { appWriteClient } from "@/lib/server/app-write";
+import { Metadata } from "next";
+import { appDetails } from "@/lib/constants";
+// import { cookies } from "next/headers";
+// import { appWriteCreateAdminClient } from "@/lib/server/app-write";
+
+export const metadata: Metadata = {
+  title: `Verifying mail | ${appDetails.name}`,
+  description: "Verifying user email Boiler plate",
+};
 
 const page = async ({
   searchParams,
 }: {
   searchParams: Promise<{ secret: string; userId: string }>;
 }) => {
-  try {
-    const secret = (await searchParams).secret;
-    const userId = (await searchParams).userId;
+  const secret = (await searchParams).secret;
+  const userId = (await searchParams).userId;
 
-    const { account } = await appWriteCreateAdminClient();
+  if (!secret && !userId) {
+    redirect(appRoutes.login);
+  }
+
+  try {
+    const { account } = await appWriteClient();
 
     const session = await account.createSession(userId, secret);
-    // console.log("session", session);
+    console.log("session", session);
 
-    // if (user) {
-    //   redirect(appRoutes.pro);
-    // }
+    if (session) {
+      redirect(appRoutes.home);
+    }
   } catch (error) {
     console.log("error", error);
     // redirect(appRoutes.login);

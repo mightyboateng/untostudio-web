@@ -1,26 +1,27 @@
 // import { appWriteAccount } from "@/lib/server/app-write";
+
 import { appRoutes } from "@/lib/constants";
+import { createSessionClient } from "@/lib/server/app-write";
+// import { AppwriteException } from "appwrite";
 import { redirect } from "next/navigation";
 import React from "react";
-import auth from "@/lib/auth";
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
-  const user = await auth.getUser()
+  try {
+    const { account } = await createSessionClient();
 
-  if(user){
-    redirect(appRoutes.home);
+    const user = await account.get();
+
+    if (user) {
+      redirect(appRoutes.home);
+    }
+  } catch (error: unknown) {
+    if (error instanceof Error && error.message === "No session") {
+      // redirect(appRoutes.login);
+    } else {
+      throw error;
+    }
   }
-  // try {
-  //   const user = await appWriteAccount().getSession("current");
-
-  //   if (user) {
-  //     redirect(appRoutes.pro);
-  //   }
-
-  // } catch (error) {
-  //   console.log('error from auth layout', error);
-  //   // throw error;
-  // }
   return <div>{children}</div>;
 };
 

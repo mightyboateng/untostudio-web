@@ -1,13 +1,13 @@
 export interface currentUserType {
   uid: string;
-  databaseId: string;
   email: string;
+  isAdmin:boolean;
   photoUrl: string;
-  displayName: string;
+  username: string;
   userType: string;
 }
 
-
 export interface reduxUserType {
-  user:{user: currentUserType}
+  user: { user: currentUserType};
 }
+

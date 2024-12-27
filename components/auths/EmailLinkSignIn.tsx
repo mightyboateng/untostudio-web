@@ -10,9 +10,10 @@ import { Loader2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { localStateType } from "@/types/localType";
 import { setDisableOtherLoginOptions } from "@/redux/slides/localState";
-import { appWriteCreateAdminClient } from "@/lib/server/app-write";
+// import { appWriteCreateAdminClient } from "@/lib/server/app-write";
 import { ID } from "node-appwrite";
-// import { appWriteClient } from "@/lib/server/app-write";
+import { appWriteClient } from "@/lib/server/app-write";
+import { appRoutes } from "@/lib/constants";
 // import { appWriteAccount } from "@/utils/app-write";
 // import { ID } from "appwrite";
 
@@ -24,19 +25,19 @@ const EmailLinkSignIn = () => {
 
   const dispatch = useDispatch();
 
-  async function handleSubmit(formData: any) {
+  async function handleSubmit(formData: FormData) {
     dispatch(setDisableOtherLoginOptions(true));
 
     setIsLoading(true);
 
-    const email = formData.get("email");
+    const email = formData.get("email") as string;
 
-    const { account } = await appWriteCreateAdminClient();
+    const { account } = await appWriteClient();
 
     await account.createMagicURLToken(
       ID.unique(),
       email,
-      `${window.location.origin}/api/appwrite/session`
+      `${window.location.origin}/${appRoutes.verifyEmail}`
     );
 
     // const result = await appWriteAccount().createMagicURLToken(
@@ -50,7 +51,7 @@ const EmailLinkSignIn = () => {
     toast({
       title: "Email sent",
       description:
-        "Please check your email for a link to sign in with a temporary code.",
+        "Please check your email for a link to sign in",
     });
     setIsLoading(false);
   }

@@ -13,14 +13,14 @@ import {
 } from "lucide-react";
 import { YouTube } from "@mui/icons-material";
 import UserDropDown from "./UserDropDown";
-import { useSelector } from "react-redux";
-import { reduxUserType } from "@/types/userType";
+// import { useSelector } from "react-redux";
+// import { reduxUserType } from "@/types/userType";
 
 const SideNavBar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
-  const userDetail = useSelector((state: reduxUserType) => state.user.user);
+  // const userDetail = useSelector((state: reduxUserType) => state.user.user);
 
   useEffect(() => {
     const handleResize = () => {
@@ -109,7 +109,7 @@ const SideNavBar = () => {
         </div>
 
         <UserDropDown
-          username={userDetail?.displayName}
+          
           isCollapsed={isCollapsed}
         />
       </aside>

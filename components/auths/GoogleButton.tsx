@@ -7,7 +7,7 @@ import { Google } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { setDisableOtherLoginOptions } from "@/redux/slides/localState";
 import { Loader2 } from "lucide-react";
-import { signUpWithGoogle } from "@/lib/server/oauth";
+// import { signUpWithGoogle } from "@/lib/server/oauth";
 
 const GoogleButton = ({ disableButton }: { disableButton: boolean }) => {
   const dispatch = useDispatch();
@@ -21,7 +21,6 @@ const GoogleButton = ({ disableButton }: { disableButton: boolean }) => {
   return (
     boilerAuth.google && (
       <form
-        action={signUpWithGoogle}
         onSubmit={() => {
           // e.preventDefault();
           handleOnClick();
