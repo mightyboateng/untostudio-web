@@ -51,10 +51,6 @@ Adding the following payment systems to the app;
 
 
 ## (backend as a service)
-Using the firebase for the backend for the main branch
-- database = firebase
-- auth = firebase
-
 Using the appwrite for the backend for the appwrite-branch branch
 - database = appwrite
 - auth = appwrite
