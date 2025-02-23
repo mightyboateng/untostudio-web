@@ -10,12 +10,7 @@ import { Loader2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { localStateType } from "@/types/localType";
 import { setDisableOtherLoginOptions } from "@/redux/slides/localState";
-// import { appWriteCreateAdminClient } from "@/lib/server/app-write";
-import { ID } from "node-appwrite";
-import { appWriteClient } from "@/lib/server/app-write";
-import { appRoutes } from "@/lib/constants";
-// import { appWriteAccount } from "@/utils/app-write";
-// import { ID } from "appwrite";
+import { handleLoginFormSubmit } from "./actions";
 
 const EmailLinkSignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,20 +20,16 @@ const EmailLinkSignIn = () => {
 
   const dispatch = useDispatch();
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     dispatch(setDisableOtherLoginOptions(true));
+
+    e.preventDefault();
 
     setIsLoading(true);
 
-    const email = formData.get("email") as string;
+    const formData = new FormData(e.currentTarget);
 
-    const { account } = await appWriteClient();
-
-    await account.createMagicURLToken(
-      ID.unique(),
-      email,
-      `${window.location.origin}/${appRoutes.verifyEmail}`
-    );
+    const result = await handleLoginFormSubmit(formData);
 
     // const result = await appWriteAccount().createMagicURLToken(
     //   ID.unique(),
@@ -46,19 +37,18 @@ const EmailLinkSignIn = () => {
     //   `${window.location.origin}/connect/verifying-user-email`
     // );
 
-    // console.log(result);
+    console.log(result);
 
     toast({
       title: "Email sent",
-      description:
-        "Please check your email for a link to sign in",
+      description: "Please check your email for a link to sign in",
     });
     setIsLoading(false);
   }
 
   return (
     boilerAuth.email_link_sign_in && (
-      <form className="grid gap-4" action={handleSubmit}>
+      <form className="grid gap-4" onSubmit={handleSubmit}>
         <div className="grid gap-2">
           <Label htmlFor="email">Email</Label>
           <Input
