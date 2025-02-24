@@ -1,111 +1,58 @@
 import { Metadata } from "next";
-import { appDetails, appRoutes } from "@/lib/constants";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { createSessionClient } from "@/lib/server/app-write";
-import { User } from "lucide-react";
-import { ID } from "node-appwrite";
+import Link from "next/link";
+import { MoveLeft } from "lucide-react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { appDetails, appRoutes } from "@/lib/constants";
+import Image from "next/image";
+import OtpFormComponent from "@/components/auths/OtpFormComponent";
 
 export const metadata: Metadata = {
-  title: `Onboarding process | ${appDetails.name}`,
-  description: "Complete the onboarding process and you are good to go!",
+  title: `Verifying mail | ${appDetails.name}`,
+  description: "Verifying user email Boiler plate",
 };
 
 const page = async () => {
-  async function handleSubmit(formData: FormData) {
-    "use server";
+  const userLoginDetail = (await cookies()).get(appDetails.loginDetailForOtp)
+    ? JSON.parse(
+        (await cookies()).get(appDetails.loginDetailForOtp)?.value || "{}"
+      )
+    : null;
 
-    const username = formData.get("username") as string;
-
-    const { databases } = await createSessionClient();
-
-    const { account } = await createSessionClient();
-
-    const user = await account.get();
-
-    const response = await databases.createDocument(
-      process.env.NEXT_PUBLIC_DATABASE!,
-      process.env.NEXT_PUBLIC_USERS_COLLECTION!,
-      ID.unique(),
-      {
-        username,
-        uid: user.$id,
-        email: user.email,
-        createdAt: user.$createdAt,
-      }
-    );
-
-    if (response) {
-      (await cookies()).set(
-        "user",
-        JSON.stringify({
-          username,
-          uid: user.$id,
-          email: user.email,
-          isAdmin: false,
-          photoUrl: null,
-          userType: null,
-        })
-      );
-
-      redirect(appRoutes.home)
-    }
+  if (!userLoginDetail) {
+    redirect(appRoutes.login);
   }
 
   return (
-    <div className="min-h-screen flex justify-center items-center ">
-      <form
-        className="flex flex-col p-8 space-y-4 md:min-w-96"
-        action={handleSubmit}
-      >
-        <div className="flex flex-col items-center">
-          <label className="mt-2 cursor-pointer">
-            {/* <input
-              type="file"
-              className="hidden"
-              aria-label="Upload profile picture"
+    <div className="flex min-h-screen items-center justify-center bg-background">
+      <div className="md:mx-auto mx-5 w-full max-w-md space-y-8 md:py-0 py-8">
+        <div className="flex flex-col items-center space-y-2">
+          <div>
+            <Image
+              src={appDetails.logo}
+              className="w-full h-full object-cover"
+              alt="logo"
+              width={30}
+              height={30}
+              priority={true}
             />
-            <Photo /> */}
-            <div className="flex justify-center items-center border rounded-full w-20 h-20">
-              <User className="w-10 h-10 " />
-            </div>
-          </label>
-          <h2 className="mt-2 text-lg font-semibold">
-            Please enter your details
-          </h2>
+          </div>
+          <h2 className="text-4xl font-bold">Verification</h2>
+          <p className="text-sm text-muted-foreground">
+            Enter code sent to{" "}
+            <span className="font-bold">{userLoginDetail?.email}</span>
+          </p>
         </div>
-        <div className="flex gap-4">
-          <Input
-            type="text"
-            name="username"
-            aria-label="full name"
-            required={true}
-            placeholder="Enter your full name"
-            className="border rounded-md p-2 flex-grow"
-          />
-          {/* <Input
-            type="text"
-            aria-label="Doctor's last name"
-            placeholder="Last name"
-            className="border rounded-md p-2 flex-grow"
-          /> */}
+        <div className="grid gap-6 place-items-center">
+          <OtpFormComponent />
+          <Link
+            href="/login"
+            className="text-xs underline text-blue-500 flex items-center gap-2"
+          >
+            <MoveLeft className="w-4 h-4" /> Go back
+          </Link>
         </div>
-        {/* <Input
-          type="text"
-          aria-label="Doctor's title"
-          placeholder="Doctor's title"
-          className="border rounded-md p-2"
-        /> */}
-
-        <Button
-          type="submit"
-          className="mt-4 bg-default hover:bg-default-hover text-default-foreground font-bold py-2 px-4"
-        >
-          Continue
-        </Button>
-      </form>
+      </div>
     </div>
   );
 };

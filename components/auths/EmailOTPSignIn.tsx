@@ -1,38 +1,37 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { boilerAuth } from "@/boiler-plate-controllers/auth-controls";
-import { ID } from "node-appwrite";
-import { appWriteCreateAdminClient } from "@/lib/server/app-write";
-import { appRoutes } from "@/lib/constants";
-import { redirect } from "next/navigation";
-import ClientSideButton from "../reusable/ClientSideButton";
-import { cookies } from "next/headers";
+import { handleLoginEmailOTPSubmit } from "../../lib/server/actions";
+import { toast } from "@/hooks/use-toast";
+import { Button } from "../ui/button";
+import { Loader2 } from "lucide-react";
 
-const EmailOTPSignIn = async () => {
-  async function handleSubmit(formData: FormData) {
-    "use server";
+const EmailOTPSignIn = () => {
+  const [isLoading, setIsLoading] = useState(false);
 
-    const email = formData.get("email") as string;
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
-    const { account } = await appWriteCreateAdminClient();
+    setIsLoading(true);
 
-    const userInfo = await account.createEmailToken(ID.unique(), email, false);
+    const formData = new FormData(e.currentTarget);
 
-    (await cookies()).set(
-      "userInfo",
-      JSON.stringify({ userId: userInfo.userId, email })
-    );
+    await handleLoginEmailOTPSubmit(formData);
 
-    redirect(appRoutes.verifyEmail);
+    toast({
+      title: "Email sent",
+      description: "Please check your email for a link to sign in",
+    });
+
+    setIsLoading(false);
   }
 
   return (
     boilerAuth.email_link_sign_in && (
-      <form
-        className="grid gap-4"
-        action={handleSubmit}
-      >
+      <form className="grid gap-4" onSubmit={handleSubmit}>
         <div className="grid gap-2">
           <Label htmlFor="email">Email</Label>
           <Input
@@ -44,14 +43,12 @@ const EmailOTPSignIn = async () => {
           />
         </div>
 
-        {/* <Button
+        <Button
           type="submit"
-          disabled={disableOtherLoginOptions}
-          className="w-full bg-teal-600 text-white hover:bg-teal-900"
+          className="w-full text-white bg-default hover:bg-default/85"
         >
           {isLoading ? <Loader2 className="animate-spin" /> : "Continue"}
-        </Button> */}
-        <ClientSideButton />
+        </Button>
       </form>
     )
   );

@@ -11,25 +11,25 @@ import {
 // import { appRoutes } from "../constants";
 // import { redirect } from "next/navigation";
 
-// export const appWriteClient = async () => {
-//   const client = new Client();
+export const appWriteClient = async () => {
+  const client = new Client();
 
-//   client
-//     .setEndpoint(process.env.NEXT_PUBLIC_ENDPOINT!)
-//     .setProject(process.env.NEXT_PUBLIC_PROJECT!);
+  client
+    .setEndpoint(process.env.NEXT_PUBLIC_ENDPOINT!)
+    .setProject(process.env.NEXT_PUBLIC_PROJECT!);
 
-//   return {
-//     get account() {
-//       return new Account(client);
-//     },
-//     get database() {
-//       return new Databases(client);
-//     },
-//     get storage() {
-//       return new Storage(client);
-//     },
-//   };
-// };
+  return {
+    get account() {
+      return new Account(client);
+    },
+    get database() {
+      return new Databases(client);
+    },
+    get storage() {
+      return new Storage(client);
+    },
+  };
+};
 
 // -------------------------------------------------
 export const appWriteCreateAdminClient = async () => {

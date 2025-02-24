@@ -10,7 +10,7 @@ import { Loader2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { localStateType } from "@/types/localType";
 import { setDisableOtherLoginOptions } from "@/redux/slides/localState";
-import { handleLoginFormSubmit } from "./actions";
+import { handleLoginFormSubmit } from "../../lib/server/actions";
 
 const EmailLinkSignIn = () => {
   const [isLoading, setIsLoading] = useState(false);

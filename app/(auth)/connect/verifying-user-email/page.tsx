@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Loader2 } from "lucide-react";
 import { redirect } from "next/navigation";
 import { appRoutes } from "@/lib/constants";
-import { appWriteClient } from "@/lib/server/app-write";
+import { appWriteCreateAdminClient } from "@/lib/server/app-write";
 import { Metadata } from "next";
 import { appDetails } from "@/lib/constants";
 // import { cookies } from "next/headers";
@@ -27,7 +27,7 @@ const page = async ({
   }
 
   try {
-    const { account } = await appWriteClient();
+    const { account } = await appWriteCreateAdminClient();
 
     const session = await account.createSession(userId, secret);
     console.log("session", session);

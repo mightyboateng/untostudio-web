@@ -4,6 +4,8 @@ export const kUserCreatedAlready = "User created already";
 
 export const appDetails = {
   name: "Boiler Plate",
+  loginDetailForOtp: "userInfo",
+  logo: "/logo.png",
 };
 
 export const appRoutes = {
