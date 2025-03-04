@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { MoveLeft } from "lucide-react";
 import { cookies } from "next/headers";
-import { appWriteCreateAdminClient } from "@/lib/server/app-write";
+import { appWriteCreateAdminServer } from "@/lib/server/app-write";
 import { redirect } from "next/navigation";
 import { appRoutes } from "@/lib/constants";
 // import { useSelector } from "react-redux";
@@ -34,7 +34,7 @@ const OtpComponent = async () => {
   const handleSubmit = async (formData: FormData) => {
     "use server";
     const secret = formData.get("otp") as string;
-    const { account } = await appWriteCreateAdminClient();
+    const { account } = await appWriteCreateAdminServer();
 
     const session = await account.createSession(userLoginDetail.userId, secret);
 

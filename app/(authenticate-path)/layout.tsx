@@ -1,14 +1,14 @@
 import SideNavBar from "@/components/SideNavBar";
 import { appRoutes } from "@/lib/constants";
-import { createSessionClient } from "@/lib/server/app-write";
+import { createSessionServer } from "@/lib/server/app-write";
 import { redirect } from "next/navigation";
 import { Query } from "node-appwrite";
 import React from "react";
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
   try {
-    const { account } = await createSessionClient();
-    const { databases } = await createSessionClient();
+    const { account } = await createSessionServer();
+    const { databases } = await createSessionServer();
 
     const user = await account.get();
 
@@ -21,8 +21,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
 
       if (usersCollection.total === 0) {
         redirect(appRoutes.onboarding);
-      } 
-
+      }
     }
   } catch (error: unknown) {
     if (error instanceof Error && error.message === "No session") {

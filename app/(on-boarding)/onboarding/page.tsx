@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-
 import {
   Card,
   CardContent,
@@ -9,8 +8,6 @@ import {
 } from "@/components/ui/card";
 import { appDetails } from "@/lib/constants";
 import UserOnboardingForm from "@/components/onboarding/UserOnboardingForm";
-// import Image from "next/image";
-// import OtpFormComponent from "@/components/auths/OtpFormComponent";
 
 export const metadata: Metadata = {
   title: `Verifying mail | ${appDetails.name}`,
@@ -18,16 +15,6 @@ export const metadata: Metadata = {
 };
 
 const page = async () => {
-  // const userLoginDetail = (await cookies()).get(appDetails.loginDetailForOtp)
-  //   ? JSON.parse(
-  //       (await cookies()).get(appDetails.loginDetailForOtp)?.value || "{}"
-  //     )
-  //   : null;
-
-  // if (!userLoginDetail) {
-  //   redirect(appRoutes.login);
-  // }
-
   return (
     <div className="min-h-screen flex justify-center items-center ">
       <Card className="md:border-2 border-none rounded md:w-[600px]">

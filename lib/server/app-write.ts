@@ -11,7 +11,7 @@ import {
 // import { appRoutes } from "../constants";
 // import { redirect } from "next/navigation";
 
-export const appWriteClient = async () => {
+export const appWriteServer = async () => {
   const client = new Client();
 
   client
@@ -22,7 +22,7 @@ export const appWriteClient = async () => {
     get account() {
       return new Account(client);
     },
-    get database() {
+    get databases() {
       return new Databases(client);
     },
     get storage() {
@@ -32,7 +32,7 @@ export const appWriteClient = async () => {
 };
 
 // -------------------------------------------------
-export const appWriteCreateAdminClient = async () => {
+export const appWriteCreateAdminServer = async () => {
   const client = new Client();
 
   client
@@ -44,7 +44,7 @@ export const appWriteCreateAdminClient = async () => {
     get account() {
       return new Account(client);
     },
-    get database() {
+    get databases() {
       return new Databases(client);
     },
     get storage() {
@@ -53,7 +53,7 @@ export const appWriteCreateAdminClient = async () => {
   };
 };
 
-export const createSessionClient = async () => {
+export const createSessionServer = async () => {
   const client = new Client();
 
   client

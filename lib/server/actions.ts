@@ -2,18 +2,18 @@
 
 import { ID, Query } from "node-appwrite";
 import {
-  appWriteClient,
-  appWriteCreateAdminClient,
+  appWriteServer,
+  appWriteCreateAdminServer,
 } from "@/lib/server/app-write";
 import { appDetails, appRoutes } from "@/lib/constants";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { createSessionClient } from "@/lib/server/app-write";
+import { createSessionServer } from "@/lib/server/app-write";
 
 export async function handleLoginFormSubmit(formData: FormData) {
   const email = formData.get("email") as string;
 
-  const { account } = await appWriteClient();
+  const { account } = await appWriteServer();
 
   //   console.log("window.location.origin", window.location.origin);
 
@@ -30,7 +30,7 @@ export async function handleLoginFormSubmit(formData: FormData) {
 export async function handleLoginEmailOTPSubmit(formData: FormData) {
   const email = formData.get("email") as string;
 
-  const { account } = await appWriteCreateAdminClient();
+  const { account } = await appWriteCreateAdminServer();
 
   const userInfo = await account.createEmailToken(ID.unique(), email, false);
 
@@ -49,7 +49,7 @@ export async function handleVerifyEmailTokenSubmit(secret: string) {
       )
     : null;
 
-  const { account } = await appWriteCreateAdminClient();
+  const { account } = await appWriteCreateAdminServer();
 
   const session = await account.createSession(userLoginDetail.userId, secret);
 
@@ -62,8 +62,8 @@ export async function handleVerifyEmailTokenSubmit(secret: string) {
 
   if (session) {
     try {
-      const { account } = await createSessionClient();
-      const { databases } = await createSessionClient();
+      const { account } = await createSessionServer();
+      const { databases } = await createSessionServer();
 
       const user = await account.get();
 
@@ -85,6 +85,9 @@ export async function handleVerifyEmailTokenSubmit(secret: string) {
               lastName: usersCollection.documents[0].lastName,
               userType: usersCollection.documents[0].userType,
               uid: usersCollection.documents[0].uid,
+              // uid: usersCollection.documents[0].uid,
+              isAdmin: usersCollection.documents[0].isAdmin,
+              photoUrl: usersCollection.documents[0].photoUrl,
               email: user.email,
             })
           );
@@ -105,9 +108,9 @@ export async function handleOnboardingSubmit(formData: FormData) {
   const lastName = formData.get("lastName") as string;
   const username = formData.get("username") as string;
 
-  const { databases } = await createSessionClient();
+  const { databases } = await createSessionServer();
 
-  const { account } = await createSessionClient();
+  const { account } = await createSessionServer();
 
   const user = await account.get();
 
@@ -121,6 +124,8 @@ export async function handleOnboardingSubmit(formData: FormData) {
       lastName,
       uid: user.$id,
       email: user.email,
+      userType: "free",
+      isAdmin: false,
     }
   );
 

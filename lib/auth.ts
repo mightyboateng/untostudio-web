@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { createSessionClient } from "./server/app-write";
+import { createSessionServer } from "./server/app-write";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
 const auth = {
@@ -11,7 +11,7 @@ const auth = {
 
     try {
       if (auth.sessionCookies?.value) {
-        const { account } = await createSessionClient();
+        const { account } = await createSessionServer();
 
         auth.user = await account.get();
       }
