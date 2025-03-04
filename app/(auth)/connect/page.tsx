@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import Image from "next/image";
-import EmailLinkSignIn from "@/components/auths/EmailLinkSignIn";
 import SocialLoginComponent from "@/components/auths/SocialLoginComponent";
+import EmailOTPSignIn from "@/components/auths/EmailOTPSignIn";
 
 export const metadata: Metadata = {
   title: "Connect here | Boiler plate",
@@ -29,7 +29,7 @@ const page = () => {
           </p>
         </div>
         <div className="grid gap-6">
-          <EmailLinkSignIn />
+          <EmailOTPSignIn />
 
           <div className=" flex justify-center text-xs uppercase">
             <span className="bg-background px-2 text-muted-foreground">

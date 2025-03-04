@@ -38,7 +38,7 @@ const PaystackRedirectPaymentButton = ({
         email: user.email,
         amount: convertedPrice,
         userId: user.uid,
-        userDatabaseId: user.databaseId,
+        // userDatabaseId: user.databaseId,
       });
       const data = response.data;
       if (!data.ok) throw new Error("Something went wrong");

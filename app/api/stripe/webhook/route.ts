@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
   const body = await request.text();
   const endpointSecret = process.env.STRIPE_SECRET_WEBHOOK_KEY!;
 
-  const sig = headers().get("stripe-signature") as string;
+  const sig = (await headers()).get("stripe-signature") as string;
   
   let event: Stripe.Event;
   try {
@@ -41,6 +41,7 @@ export async function POST(request: NextRequest) {
   const currency = data.currency;
   const customerDetails = data.customer_details;
   const amount = data.amount_total;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const transactionDetails = {
     userId,
     priceId,
@@ -54,6 +55,7 @@ export async function POST(request: NextRequest) {
     return new Response("Subscription added", {
       status: 200,
     });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return new Response("Server error", {
       status: 500,

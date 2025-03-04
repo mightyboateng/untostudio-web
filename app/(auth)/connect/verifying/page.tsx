@@ -1,11 +1,16 @@
-import { Metadata } from "next";
-import Link from "next/link";
-import { MoveLeft } from "lucide-react";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import { appDetails, appRoutes } from "@/lib/constants";
+import React from "react";
 import Image from "next/image";
+import { redirect } from "next/navigation";
+import { appRoutes } from "@/lib/constants";
+// import { appWriteCreateAdminClient } from "@/lib/server/app-write";
+import { Metadata } from "next";
+import { appDetails } from "@/lib/constants";
+import { cookies } from "next/headers";
+import Link from "next/link";
 import OtpFormComponent from "@/components/auths/OtpFormComponent";
+import { MoveLeft } from "lucide-react";
+// import { cookies } from "next/headers";
+// import { appWriteCreateAdminClient } from "@/lib/server/app-write";
 
 export const metadata: Metadata = {
   title: `Verifying mail | ${appDetails.name}`,
@@ -30,7 +35,7 @@ const page = async () => {
           <div>
             <Image
               src={appDetails.logo}
-              className="w-full h-full object-cover"
+              className="w-[60px] h-[60px] object-cover"
               alt="logo"
               width={30}
               height={30}

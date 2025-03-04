@@ -16,7 +16,8 @@ export async function POST() {
     
     return NextResponse.redirect("/login");
   } catch (error) {
-    NextResponse.json({ error: error.message })
+    console.log('error', error);
+    // NextResponse.json({ error: error.message })
     
   }
 }

@@ -11,7 +11,7 @@ export const appDetails = {
 export const appRoutes = {
   home: "/pro",
   landing: "/",
-  login: "/login",
-  verifyEmail: "/login/verify",
-  onboarding: "user-details",
+  login: "/connect",
+  verifyEmail: "/connect/verifying",
+  onboarding: "/onboarding",
 };

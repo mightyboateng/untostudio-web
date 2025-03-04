@@ -1,6 +1,6 @@
 "use server";
 
-import { ID } from "node-appwrite";
+import { ID, Query } from "node-appwrite";
 import {
   appWriteClient,
   appWriteCreateAdminClient,
@@ -42,14 +42,12 @@ export async function handleLoginEmailOTPSubmit(formData: FormData) {
   redirect(appRoutes.verifyEmail);
 }
 
-export async function handleVerifyEmailTokenSubmit(formData: FormData) {
+export async function handleVerifyEmailTokenSubmit(secret: string) {
   const userLoginDetail = (await cookies()).get(appDetails.loginDetailForOtp)
     ? JSON.parse(
         (await cookies()).get(appDetails.loginDetailForOtp)?.value || "{}"
       )
     : null;
-
-  const secret = formData.get("otp") as string;
 
   const { account } = await appWriteCreateAdminClient();
 
@@ -63,7 +61,42 @@ export async function handleVerifyEmailTokenSubmit(formData: FormData) {
   });
 
   if (session) {
-    redirect(appRoutes.home);
+    try {
+      const { account } = await createSessionClient();
+      const { databases } = await createSessionClient();
+
+      const user = await account.get();
+
+      if (user) {
+        const usersCollection = await databases.listDocuments(
+          process.env.NEXT_PUBLIC_DATABASE!,
+          process.env.NEXT_PUBLIC_USERS_COLLECTION!,
+          [Query.equal("uid", user.$id)]
+        );
+
+        if (usersCollection.total === 0) {
+          redirect(appRoutes.onboarding);
+        } else {
+          (await cookies()).set(
+            "user",
+            JSON.stringify({
+              username: usersCollection.documents[0].username,
+              firstName: usersCollection.documents[0].firstName,
+              lastName: usersCollection.documents[0].lastName,
+              userType: usersCollection.documents[0].userType,
+              uid: usersCollection.documents[0].uid,
+              email: user.email,
+            })
+          );
+        }
+      }
+    } catch (error: unknown) {
+      if (error instanceof Error && error.message === "No session") {
+        redirect(appRoutes.login);
+      } else {
+        throw error;
+      }
+    }
   }
 }
 
@@ -88,7 +121,6 @@ export async function handleOnboardingSubmit(formData: FormData) {
       lastName,
       uid: user.$id,
       email: user.email,
-      createdAt: user.$createdAt,
     }
   );
 

@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { appRoutes } from "./lib/constants";
-import auth from "./lib/auth";
+// import { appRoutes } from "./lib/constants";
+// import auth from "./lib/auth";
 
 export async function middleware(request: Request) {
-  const user = await auth.getUser()
+  // const user = await auth.getUser()
   const url = new URL(request.url);
 
   // Skip middleware for root path
@@ -12,12 +12,12 @@ export async function middleware(request: Request) {
   }
 
   // Check if the request is already for the login page
-  if (!user && request.url !== new URL(appRoutes.login, request.url).href) {
-    const response = NextResponse.redirect(
-      new URL(appRoutes.login, request.url)
-    );
-    return response;
-  }
+  // if (!user && request.url !== new URL(appRoutes.login, request.url).href) {
+  //   const response = NextResponse.redirect(
+  //     new URL(appRoutes.login, request.url)
+  //   );
+  //   return response;
+  // }
 
   return NextResponse.next();
 }
