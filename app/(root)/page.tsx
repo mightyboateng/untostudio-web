@@ -1,7 +1,7 @@
 import DefaultHeader from "@/components/DefaultHeader";
 import Footer from "@/components/Footer";
-import PricingTableSection from "@/components/samples/PricingTableSection";
-import TechStackSection from "@/components/samples/TechStackSection";
+// import PricingTableSection from "@/components/samples/PricingTableSection";
+// import TechStackSection from "@/components/samples/TechStackSection";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
@@ -24,10 +24,10 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <TechStackSection />
+          {/* <TechStackSection /> */}
         </div>
 
-        <PricingTableSection />
+        {/* <PricingTableSection /> */}
 
       </div>
       <Footer />

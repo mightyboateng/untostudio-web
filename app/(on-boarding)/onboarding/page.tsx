@@ -6,8 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { appDetails } from "@/lib/constants";
 import UserOnboardingForm from "@/components/onboarding/UserOnboardingForm";
+import { appDetails } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: `Verifying mail | ${appDetails.name}`,

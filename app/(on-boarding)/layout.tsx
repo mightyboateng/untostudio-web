@@ -19,7 +19,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
       );
 
       if (usersCollection.total < 0) {
-        redirect(appRoutes.home);
+        redirect(appRoutes.dashboard);
       }
     }
   } catch (error: unknown) {

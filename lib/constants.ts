@@ -9,7 +9,8 @@ export const appDetails = {
 };
 
 export const appRoutes = {
-  home: "/pro",
+
+  dashboard:'/dashboard',
   landing: "/",
   login: "/connect",
   verifyEmail: "/connect/verifying",

@@ -13,7 +13,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
     const user = await account.get();
 
     if (user) {
-      redirect(appRoutes.home);
+      redirect(appRoutes.dashboard);
     }
   } catch (error: unknown) {
     if (error instanceof Error && error.message === "No session") {

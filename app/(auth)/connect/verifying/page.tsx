@@ -1,10 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { appRoutes } from "@/lib/constants";
+import { appDetails, appRoutes } from "@/lib/constants";
 // import { appWriteCreateAdminClient } from "@/lib/server/app-write";
 import { Metadata } from "next";
-import { appDetails } from "@/lib/constants";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import OtpFormComponent from "@/components/auths/OtpFormComponent";

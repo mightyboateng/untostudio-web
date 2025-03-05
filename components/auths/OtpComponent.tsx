@@ -46,7 +46,7 @@ const OtpComponent = async () => {
     });
 
     if (session) {
-      redirect(appRoutes.home);
+      redirect(appRoutes.dashboard);
     }
   };
 

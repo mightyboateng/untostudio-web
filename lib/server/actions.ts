@@ -5,10 +5,10 @@ import {
   appWriteServer,
   appWriteCreateAdminServer,
 } from "@/lib/server/app-write";
-import { appDetails, appRoutes } from "@/lib/constants";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createSessionServer } from "@/lib/server/app-write";
+import { appDetails, appRoutes } from "../constants";
 
 export async function handleLoginFormSubmit(formData: FormData) {
   const email = formData.get("email") as string;
@@ -141,6 +141,6 @@ export async function handleOnboardingSubmit(formData: FormData) {
       })
     );
 
-    redirect(appRoutes.home);
+    redirect(appRoutes.dashboard);
   }
 }
