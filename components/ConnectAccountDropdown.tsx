@@ -1,7 +1,7 @@
-// 'use server'
+
 
 import React from "react";
-import { Unplug, Link } from "lucide-react";
+import { Unplug } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,33 +14,9 @@ import {
 import XIcon from "@mui/icons-material/X";
 import { Facebook, YouTube, Instagram } from "@mui/icons-material";
 import Image from "next/image";
-// import { auth, signIn, signOut } from "@/auth";
-// import { Button } from "./ui/button";
-// import { google } from "googleapis";
-// import { createSessionClient } from "@/lib/server-actions/app-write";
+import SocialConnectButton from "./SocialConnectButton";
 
-const ConnectedButton = () => {
-  return (
-    <DropdownMenuShortcut className="text-xs dark:text-green-400 text-green-800">
-      <form>
-        <button type="submit" className="flex items-center">
-          <Link className="h-3 w-3 mr-1" /> Connected
-        </button>
-      </form>
-    </DropdownMenuShortcut>
-  );
-};
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const UnConnectedButton = ({ provider }: { provider: string }) => {
-  return (
-    <DropdownMenuShortcut className="text-xs border dark:border-white rounded-full px-3 py-1 cursor-pointer">
-      <form>
-        <button type="submit">Connect</button>
-      </form>
-    </DropdownMenuShortcut>
-  );
-};
 
 const ConnectAccountDropdown = ({
   isCollapsed,
@@ -48,6 +24,7 @@ const ConnectAccountDropdown = ({
   isCollapsed: boolean;
 }) => {
   // const session = await auth();
+
 
   return (
     <DropdownMenu>
@@ -80,19 +57,14 @@ const ConnectAccountDropdown = ({
             style={{ width: "1rem", height: "1rem", marginRight: "0.5rem" }}
           />
           <span>Facebook</span>
-          <UnConnectedButton provider="facebook" />
+          <SocialConnectButton platform="facebook" />
         </DropdownMenuItem>
         <DropdownMenuItem>
           <YouTube
             style={{ width: "1rem", height: "1rem", marginRight: "0.5rem" }}
           />
           <span>Youtube</span>
-          {/* {session?.user ? (
-            <ConnectedButton />
-          ) : (
-            <UnConnectedButton provider="google" />
-          )} */}
-          <UnConnectedButton provider="google" />
+          <SocialConnectButton platform="youtube" />
         </DropdownMenuItem>
         <DropdownMenuItem>
           <XIcon
@@ -121,7 +93,6 @@ const ConnectAccountDropdown = ({
             alt="tiktok"
           />
           <span>Tiktok</span>
-          <ConnectedButton />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

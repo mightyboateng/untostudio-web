@@ -132,14 +132,14 @@ const SideNavBar = () => {
           {/* <ToolsDropdownComponent isCollapsed={isCollapsed} /> */}
 
           <NavLink
-            href="/ideas"
+            href="/#"
             icon={<Lightbulb className="h-5 w-5" />}
             text="Ideas"
             isCollapsed={isCollapsed}
           />
 
           <NavLink
-            href="/comments"
+            href="/#"
             icon={<MessageCircle className="h-5 w-5" />}
             text="Comments"
             isCollapsed={isCollapsed}

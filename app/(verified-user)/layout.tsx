@@ -34,7 +34,9 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex h-screen w-full md:flex-row flex-col overflow-hidden">
       <SideNavBar />
-      <div className="flex-1 md:p-6 p-3 overflow-y-scroll">{children}</div>
+      <div className="md:w-[1200px] mx-auto">
+        <div className="flex-1 md:p-6 p-3 overflow-y-scroll">{children}</div>
+      </div>
     </div>
   );
 };
