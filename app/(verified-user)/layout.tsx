@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import SideNavBar from "@/components/SideNavBar";
 import { appRoutes } from "@/lib/constants";
 import { createSessionServer } from "@/lib/server/app-write";
@@ -21,6 +22,13 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
 
       if (usersCollection.total === 0) {
         redirect(appRoutes.onboarding);
+      } else {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const session = await auth();
+
+        // if(session){
+        //   console.log("session from layout", session);
+        // }
       }
     }
   } catch (error: unknown) {
@@ -34,8 +42,8 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex h-screen w-full md:flex-row flex-col overflow-hidden">
       <SideNavBar />
-      <div className="md:w-[1200px] mx-auto">
-        <div className="flex-1 md:p-6 p-3 overflow-y-scroll">{children}</div>
+      <div className="md:w-[1200px] w-full mx-auto overflow-y-scroll">
+        <div className="flex-1 md:p-6 p-3 ">{children}</div>
       </div>
     </div>
   );

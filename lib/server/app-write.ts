@@ -1,3 +1,5 @@
+'use server'
+
 // import { Account, Client, Databases, Storage } from "appwrite";
 import { cookies } from "next/headers";
 import {
