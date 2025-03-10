@@ -25,6 +25,7 @@ import {
 const ConnectAccountDropdown = ({ isCollapsed }: { isCollapsed: boolean }) => {
   const [youtube, setYoutube] = useState<Models.Document | null>(null);
   const [instagram, setInstagram] = useState<Models.Document | null>(null);
+  const [tiktok, setTiktok] = useState<Models.Document | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -46,18 +47,24 @@ const ConnectAccountDropdown = ({ isCollapsed }: { isCollapsed: boolean }) => {
         }
 
         // Use Promise.allSettled to handle both requests simultaneously
-        const [youtubeResult, instagramResult] = await Promise.allSettled([
-          appWriteRawDatabase.getDocument(
-            process.env.NEXT_PUBLIC_DATABASE!,
-            process.env.NEXT_PUBLIC_YOUTUBE_COLLECTION!,
-            user?.uid
-          ),
-          appWriteRawDatabase.getDocument(
-            process.env.NEXT_PUBLIC_DATABASE!,
-            process.env.NEXT_PUBLIC_INSTAGRAM_COLLECTION!,
-            user?.uid
-          ),
-        ]);
+        const [youtubeResult, instagramResult, tiktokResult] =
+          await Promise.allSettled([
+            appWriteRawDatabase.getDocument(
+              process.env.NEXT_PUBLIC_DATABASE!,
+              process.env.NEXT_PUBLIC_YOUTUBE_COLLECTION!,
+              user?.uid
+            ),
+            appWriteRawDatabase.getDocument(
+              process.env.NEXT_PUBLIC_DATABASE!,
+              process.env.NEXT_PUBLIC_INSTAGRAM_COLLECTION!,
+              user?.uid
+            ),
+            appWriteRawDatabase.getDocument(
+              process.env.NEXT_PUBLIC_DATABASE!,
+              process.env.NEXT_PUBLIC_INSTAGRAM_COLLECTION!,
+              user?.uid
+            ),
+          ]);
 
         // Handle YouTube result
         if (youtubeResult.status === "fulfilled") {
@@ -72,10 +79,18 @@ const ConnectAccountDropdown = ({ isCollapsed }: { isCollapsed: boolean }) => {
         } else if (instagramResult.reason?.code === 404) {
           setInstagram(null);
         }
+
+        // Handle Tiktok result
+        if (tiktokResult.status === "fulfilled") {
+          setTiktok(tiktokResult.value);
+        } else if (tiktokResult.reason?.code === 404) {
+          setTiktok(null);
+        }
       } catch (error) {
         console.error("Error fetching social connections:", error);
         setYoutube(null);
         setInstagram(null);
+        setTiktok(null);
       } finally {
         setIsLoading(false);
       }
@@ -157,7 +172,15 @@ const ConnectAccountDropdown = ({ isCollapsed }: { isCollapsed: boolean }) => {
             alt="TikTok"
           />
           <span>TikTok</span>
-          <SocialConnectButton platform="youtube" />
+          {isLoading ? (
+            <div className="flex justify-end w-full">
+              <Loader2 className="w-4 h-4 animate-spin" />
+            </div> // Add your loading component
+          ) : tiktok ? (
+            <SocialConnectSuccessButton platform="tiktok" />
+          ) : (
+            <SocialConnectButton platform="tiktok" />
+          )}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

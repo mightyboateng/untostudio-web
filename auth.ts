@@ -1,6 +1,7 @@
 // import { SocialPlatform } from "@/types/socialType";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import TikTok from "next-auth/providers/tiktok";
 import { createSessionServer } from "./lib/server/app-write";
 import { AppwriteException } from "node-appwrite";
 // import { ID } from "node-appwrite";
@@ -24,6 +25,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         },
       },
     }),
+    TikTok,
+
     // GoogleProvider,
     // GitHubProvider,
   ],
